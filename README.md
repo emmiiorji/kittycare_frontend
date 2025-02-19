@@ -44,7 +44,7 @@ This is a project that aims to providing fast, tailored advice on your cat's hea
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://rubyonrails.org/">NodeJS + Express</a></li>
+    <li><a href="https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md">NodeJS + Express</a></li>
   </ul>
   <ul>
     <li><a href="https://www.npmjs.com/package/@supabase/supabase-js">Supabase</a></li>
@@ -125,7 +125,7 @@ To run the project in development, execute the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Allow OAuth signing with GitHub**
+- [ ] **Allow sign in with GitHub**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
