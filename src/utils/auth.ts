@@ -10,6 +10,7 @@ export const setAuthToken = (authData: AuthToken) => {
   const expiresAt = new Date().getTime() + (parseInt(authData.expiresIn) * 1000);
   localStorage.setItem('expiresAt', expiresAt.toString());
   if(authData.photo)  localStorage.setItem('photo', authData.photo);
+  if(authData.name)  localStorage.setItem('name', authData.name);
 };
 
 export const clearTokens = () => {

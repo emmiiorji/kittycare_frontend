@@ -2,18 +2,16 @@ import google from "/public/assets//svg/google-icon-logo.svg";
 import { initializeOauthAPI } from "../../services/api";
 import { useAppDispatch } from "../../Redux/hooks";
 import { oAuthAsync } from "../../Redux/features/userSlice";
-import { useNavigate } from "react-router-dom";
 
-export const GoogleAuthentication = ({ setError }: { 
+export const GoogleAuthentication = ({ setError, setShowModal }: { 
     setError: React.Dispatch<React.SetStateAction<{
         email?: string;
         otp?: string;
         general?: string;
-      }>>
+      }>>,
+    setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
  }) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const urlParams = new URLSearchParams(window.location.search);
 
   const handleMessage = async (event: any) => {
     if (
@@ -25,23 +23,7 @@ export const GoogleAuthentication = ({ setError }: {
 
       try {
         await dispatch(oAuthAsync(data?.code)).unwrap();
-
-        // Check for subscription and redirect accordingly
-      const subscriptionId = localStorage.getItem("subscriptionId");
-      if (!subscriptionId || subscriptionId === "undefined") {
-        navigate(`/progress?${urlParams.toString()}`);
-        return;
-      }
-
-      // Check for cat profile
-      const catId = localStorage.getItem("catId");
-      if (!catId || catId === "undefined") {
-        navigate("/progress");
-        return;
-      }
-
-      // If everything exists, redirect to chat
-      navigate("/cat-assistant");
+        setShowModal(true);
       } catch (err: any) {
         setError({ general: 'Authentication failed' });
       }

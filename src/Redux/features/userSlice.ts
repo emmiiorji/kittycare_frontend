@@ -65,6 +65,7 @@ export const oAuthAsync = createAsyncThunk(
         expiresIn: response.expiresIn || "1h",
         email: response.email,
         photo: response.photo || "",
+        name: response.name || "",
       });
 
       try {

@@ -11,6 +11,7 @@ import { loginUserWithOTPAsync } from "../Redux/features/userSlice";
 import { useRive, UseRiveParameters } from "@rive-app/react-canvas";
 import styles from "../components/LoadingOverlay/LoadingOverlay.module.css";
 import { GoogleAuthentication } from "../components/Login/googleAuth";
+import { WelcomeModal } from "../components/Login/WelcomeModal";
 
 interface LoginError {
   email?: string;
@@ -28,6 +29,7 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const [error, setError] = useState<LoginError>({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const urlParams = new URLSearchParams(window.location.search);
 
   // Handle plan selection from URL
@@ -138,9 +140,10 @@ const Login: React.FC = () => {
             <span className="px-[15px] text-[#abacb0] font-medium">Or</span>
             <span className="flex w-full h-[1px] bg-[#abacb0] my-[35px]"></span>
           </div>
-          <GoogleAuthentication setError={ setError }/>
+          <GoogleAuthentication setError={ setError } setShowModal={setShowModal}/>
         </div>
       </div>
+        <WelcomeModal showModal={showModal} setShowModal={setShowModal} />
     </Layout>
   );
 };

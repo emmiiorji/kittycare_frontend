@@ -5,6 +5,7 @@ export interface AuthToken {
   expiresIn: string;
   email: string;
   photo?: string;
+  name?: string;
 }
 
 export interface UserState {
