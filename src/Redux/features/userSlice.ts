@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { signUpAPI, loginAPI, verifyOTPAPI } from '../../services/api';
+import { signUpAPI, loginAPI, verifyOTPAPI, validateOAuthAPI } from '../../services/api';
 import { LoginState, SignupState, UserState } from '../../utils/types';
 import { setAuthToken, clearTokens } from '../../utils/auth';
 import { fetchCatsAsync } from './catsSlice';
@@ -38,7 +38,7 @@ export const signUpUserWithOTPAsync = createAsyncThunk(
   'user/signUpUserWithOTP',
   async (credentials: SignupState, { rejectWithValue }) => {
     try {
-      let response = await verifyOTPAPI(credentials.email, credentials.token || '');
+      const response = await verifyOTPAPI(credentials.email, credentials.token || '');
       
       setAuthToken({
         token: response.session.access_token,
@@ -47,6 +47,38 @@ export const signUpUserWithOTPAsync = createAsyncThunk(
         photo: response.user.user_metadata?.avatar_url || ''
       });
       
+      return response;
+    } catch (error: any) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const oAuthAsync = createAsyncThunk(
+  "user/oAuth",
+  async (code: string, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await validateOAuthAPI(code);
+
+      setAuthToken({
+        token: response.token,
+        expiresIn: response.expiresIn || "1h",
+        email: response.email,
+        photo: response.photo || "",
+      });
+
+      try {
+        await dispatch(fetchSubscriptionsAsync(response.session.access_token)).unwrap();
+      } catch (error) {
+        // Silently ignore any errors from fetchSubscriptionsAsync
+      }
+
+      try {
+        await dispatch(fetchCatsAsync(response.session.access_token)).unwrap();
+      } catch (error) {
+        // Silently ignore any errors from fetchCatsAsync
+      }
+
       return response;
     } catch (error: any) {
       return rejectWithValue(error.message);

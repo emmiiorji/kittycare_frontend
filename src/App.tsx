@@ -20,10 +20,12 @@ import LoadingOverlay from './components/LoadingOverlay/LoadingOverlay';
 import { useAppDispatch } from "./Redux/hooks";
 import { logout, signUpUser } from "./Redux/features/userSlice";
 import { isAuthenticated } from "./utils/auth";
+import GoogleRedirect from './pages/GoogleRedirect.tsx';
 
 const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
+  GOOGLE_REDIRECT: '/oauth-google',
   SIGNUP: '/signup',
   SENT_MAIL: '/sent-mail',
   CONFIRM_SIGNUP: '/confirm-signup',
@@ -68,6 +70,7 @@ const AppContent = () => {
   const routes = [
     { path: ROUTES.HOME, element: <Navigate to={ROUTES.LOGIN} replace /> },
     { path: ROUTES.LOGIN, element: <Login /> },
+    { path: ROUTES.GOOGLE_REDIRECT, element: <GoogleRedirect /> },
     { path: ROUTES.SIGNUP, element: <Signup /> },
     { path: ROUTES.SENT_MAIL, element: <EmailSentSuccess /> },
     { path: ROUTES.CONFIRM_SIGNUP, element: <SignUpConfirm /> },
