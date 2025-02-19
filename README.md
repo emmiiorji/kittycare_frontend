@@ -28,7 +28,7 @@
 
 # 📖 Kitty Care App <a name="about-project"></a>
 
-This is a project that aims to providing fast, tailored advice on your cat's health, behavior, and overall well being all from the palm of your hand..
+This is a project that aims to providing fast, tailored advice on your cat's health, behavior, and overall well being all from the palm of your hand. The server-side code is hosted on GitHub <a href="https://github.com/emmiiorji/kittycare_backend">here</a>
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -86,7 +86,7 @@ In order to run this project you need:
 - Clone this repository to your desired folder:
     ```sh
     cd my-folder
-    git clone git@github.com:emmiiorji/budget-app.git
+    git clone git@github.com:emmiiorji/kittycare_frontend.git
     ```
 - Create a .env file in the root directory and add the necessary environment variables following the .env.example file (located in the root directory) as a guide
 
@@ -151,7 +151,7 @@ If you like this project, please give a ⭐️!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-Shout out to <a href="https://bitbucket.org/kittycare/kittycare_backend">Kitty Care</a> from where this project was cloned from
+Shout out to <a href="https://bitbucket.org/kittycare/kittycare_backend">Kitty Care</a> from where this project was cloned
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
