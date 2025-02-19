@@ -39,6 +39,19 @@ export const initializeOauthAPI = async () => {
   }
 };
 
+export const validateOAuthAPI = async (code: string) => {
+  try {
+    const response = await API.post(`/api/auth/oauth/google?code=${code}`);
+    return response.data;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data?.error ||
+      error.response?.data?.message ||
+      "OAuth failed"
+    );
+  }
+};
+
 export const chatAPI = async ({ catId, messages }: { catId: string; messages: Message[] }) => {
   try {
     const token = localStorage.getItem('token');
