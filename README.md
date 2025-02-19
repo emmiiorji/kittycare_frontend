@@ -151,7 +151,7 @@ If you like this project, please give a ⭐️!
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-Shout out to <a href="https://bitbucket.org/kittycare/kittycare_backend">Kitty Care</a> from where this project was cloned
+Shout out to <a href="https://bitbucket.org/kittycare/kittycare_frontend">Kitty Care</a> from where this project was cloned
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
