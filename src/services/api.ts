@@ -25,6 +25,20 @@ export const loginAPI = async (credentials: LoginState) => {
   }
 };
 
+export const initializeOauthAPI = async () => {
+  try {
+    const response = await API.get("/api/auth/oauth/google-url");
+    console.log(response)
+    return response.data.url;
+  } catch (error: any) {
+    throw new Error(
+      error.response?.data.error ||
+      error.response?.data.message ||
+      "OAuth Initializaion failed"
+    );
+  }
+};
+
 export const chatAPI = async ({ catId, messages }: { catId: string; messages: Message[] }) => {
   try {
     const token = localStorage.getItem('token');
